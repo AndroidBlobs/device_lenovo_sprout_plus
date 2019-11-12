@@ -1,0 +1,13 @@
+import /vendor/etc/init/hw/init.goodix_fp.rc
+import /vendor/etc/init/hw/init.lenovo.usb.configfs.rc
+import /vendor/etc/init/hw/init.lenovo.common.rc
+
+on init
+#added touch gesture wake node permission
+    chown system /sys/devices/virtual/touch/tp_dev/gesture_on
+
+on property:vendor.sys.charging.bl=enable
+	write sys/class/leds/lcd-backlight/brightness 20
+
+on property:vendor.sys.charging.bl=disable
+	write sys/class/leds/lcd-backlight/brightness 0
